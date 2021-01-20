@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.View;
 
+import static java.lang.Math.max;
 import static java.lang.Math.pow;
 
 public class MyView extends View {
@@ -63,10 +64,27 @@ public class MyView extends View {
         pencil.setColor(Color.YELLOW);
         canvas.drawCircle(0, 0, 100, pencil);
 
-        pencil.setStyle(Paint.Style.STROKE);
-        for (int i = 0; i < 10; i++) {
-            int x = 100 - 10 * i;
-            double y = Math.sqrt(10000 - Math.pow(x, 2));
+        pencil.setStyle(Paint.Style.FILL);
+        for (int i = 0; i < 11; i++) {
+            canvas.rotate(7 * i);
+            int x = 100 - 2 * i;
+            int y = 5 + 3 * i;
+            canvas.drawRect(x, y, x + 100, y + 2, pencil);
+            canvas.rotate(-7 * i);
+        }
+
+        pencil.setColor(Color.GRAY);
+        canvas.drawRect(570, 440, 700, 460, pencil);
+        canvas.drawRect(600, 460, 625, 500, pencil);
+        canvas.drawRect(645, 460, 670, 500, pencil);
+
+        pencil.setColor(Color.BLUE);
+        for (int i = 0; i < 6; i++) {
+            canvas.drawRect(125 + 10 * i, 325, 127 + 10 * i, 425, pencil);
+        }
+
+        for (int i = 0; i < 11; i++) {
+            canvas.drawRect(125, 325 + 10 * i, 175, 327 + 10 * i, pencil);
         }
     }
 }
